@@ -37,6 +37,8 @@ class CourseDetailView(APIView):
 class CourseCreateView(APIView):
     permission_classes = [IsInstructorOnly]
     def post(self,request):
+        print(request.user)
+        print(request.user.is_authenticated)
         try:
             serializer = CourseSerializer(data=request.data)
             if serializer.is_valid():
