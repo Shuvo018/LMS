@@ -42,3 +42,5 @@ class ResetPassword(serializers.Serializer):
     uid = serializers.CharField()
     token = serializers.CharField()
     password = serializers.CharField(min_length=8)
+
+
