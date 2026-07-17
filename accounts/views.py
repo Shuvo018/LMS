@@ -39,3 +39,14 @@ class RegistrationView(APIView):
 
 class LoginView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
+
+class Logout(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        try:
+            RefreshToken(request.data['refresh_token']).blacklist()
+            return Response(status=status.HTTP_205_RESET_CONTENT)
+        except Exception as e:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        
