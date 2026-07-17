@@ -22,6 +22,7 @@ from course.views import (
     CourseDetailView,
     CourseCreateView,
     LessonListView,
+    LessonCreateView
 )
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,4 +35,5 @@ urlpatterns = [
     path('course/<int:pk>/',view=CourseDetailView.as_view()),
     path('create_course/',view=CourseCreateView.as_view()),
     path('lessons/',view=LessonListView.as_view()),
+    path('create_lesson/',view=LessonCreateView.as_view()),
 ]
