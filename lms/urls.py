@@ -19,7 +19,8 @@ from django.urls import path
 from accounts.views import RegistrationView, LoginView, Logout, ForgotPasswordView
 from course.views import (
     CourseListView,
-    CourseDetailView
+    CourseDetailView,
+    CourseCreateView,
 )
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,4 +31,5 @@ urlpatterns = [
 
     path('courses/',view=CourseListView.as_view()),
     path('course/<int:pk>/',view=CourseDetailView.as_view()),
+    path('create_course/',view=CourseCreateView.as_view()),
 ]
