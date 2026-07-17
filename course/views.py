@@ -47,3 +47,22 @@ class CourseCreateView(APIView):
             return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
             return Response({"error":str(e)},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+
+class LessonListView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self,request):
+        try:
+            course_id = request.query_params.get("course_id")
+            if not course_id:
+                 return Response({},status=status.HTTP_404_NOT_FOUND)
+            
+            lessons = Lesson.objects.filter(
+                course__id=int(course_id)
+            )
+            serializer = LessonSerializer(lessons,many=True)
+            return Response(serializer.data,status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"error":str(e)},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
