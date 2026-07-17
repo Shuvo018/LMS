@@ -37,3 +37,5 @@ class RegistrationView(APIView):
         )
 
 
+class LoginView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
